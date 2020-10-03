@@ -10,11 +10,11 @@ type Actions =
       };
     };
 
-type State = {
+interface State {
   user: {};
   error: string;
   loading: boolean;
-};
+}
 const initialState: State = {
   user: {},
   error: "",
