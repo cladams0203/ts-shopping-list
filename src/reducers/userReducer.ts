@@ -1,14 +1,17 @@
+export const LOADING = "LOADING";
+export const ERROR = "ERROR";
+export const SET_USER = "SET_USER";
+
+interface User {
+  username: string;
+  email: string;
+  id: number;
+}
+
 type Actions =
-  | { type: "LOADING" }
-  | { type: "ERROR"; payload: string }
-  | {
-      type: "SET_USER";
-      payload: {
-        username: string;
-        email: string;
-        id: number;
-      };
-    };
+  | { type: typeof LOADING }
+  | { type: typeof ERROR; payload: string }
+  | { type: typeof SET_USER; payload: User };
 
 interface State {
   user: {};
@@ -23,17 +26,17 @@ const initialState: State = {
 
 export const userReducer = (state = initialState, action: Actions): State => {
   switch (action.type) {
-    case "LOADING":
+    case LOADING:
       return {
         ...state,
         loading: true,
       };
-    case "ERROR":
+    case ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    case "SET_USER":
+    case SET_USER:
       return {
         ...state,
         user: action.payload,

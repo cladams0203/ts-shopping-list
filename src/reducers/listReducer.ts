@@ -1,16 +1,20 @@
-interface List {
+export const ADD_ITEM = "ADD_ITEM";
+export const PURCHASED = "PURCHASED";
+export const REMOVE_PURCHASED = "REMOVE_PURCHASED";
+
+interface ListItem {
   name: string;
   id: number;
   purchased: boolean;
 }
 
 interface State {
-  list: List[];
+  list: ListItem[];
 }
 type Actions =
-  | { type: "ADD_ITEM"; payload: List }
-  | { type: "PURCHASED"; payload: number }
-  | { type: "REMOVE_PURCHASED" };
+  | { type: typeof ADD_ITEM; payload: ListItem }
+  | { type: typeof PURCHASED; payload: number }
+  | { type: typeof REMOVE_PURCHASED };
 
 const initialState: State = {
   list: [
@@ -24,16 +28,16 @@ const initialState: State = {
 
 export const listReducer = (state = initialState, action: Actions) => {
   switch (action.type) {
-    case "ADD_ITEM":
+    case ADD_ITEM:
       return {
         ...state,
         list: [...state.list, action.payload],
       };
-    case "PURCHASED":
+    case PURCHASED:
       return {
         ...state,
         list: state.list.map(
-          (item): List => {
+          (item): ListItem => {
             if (item.id === action.payload) {
               return { ...item, purchased: true };
             } else {
@@ -42,7 +46,7 @@ export const listReducer = (state = initialState, action: Actions) => {
           }
         ),
       };
-    case "REMOVE_PURCHASED":
+    case REMOVE_PURCHASED:
       return {
         list: state.list.filter((item): boolean => !item.purchased),
       };
