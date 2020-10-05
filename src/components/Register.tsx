@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-
-interface formValues {
-  username: string;
-  password: string;
-  confirmPassword: string;
-  email: string;
-}
+import { useSelector } from "react-redux";
+import { FormValues } from "../utils/types";
 
 const initialValues = {
   username: "",
@@ -15,12 +10,12 @@ const initialValues = {
 };
 
 export const Register: React.FC = () => {
-  const [form, setForm] = useState<formValues>(initialValues);
-
+  const [form, setForm] = useState<FormValues>(initialValues);
+  const state = useSelector((state) => state);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  console.log(form);
+  console.log(state);
   return (
     <>
       <form>
