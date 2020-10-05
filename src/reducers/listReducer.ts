@@ -1,32 +1,17 @@
+import { ListItem, ListState, Actions } from "../utils/types";
+
 export const ADD_ITEM = "ADD_ITEM";
 export const PURCHASED = "PURCHASED";
 export const REMOVE_PURCHASED = "REMOVE_PURCHASED";
 
-interface ListItem {
-  name: string;
-  id: number;
-  purchased: boolean;
-}
-
-interface State {
-  list: ListItem[];
-}
-type Actions =
-  | { type: typeof ADD_ITEM; payload: ListItem }
-  | { type: typeof PURCHASED; payload: number }
-  | { type: typeof REMOVE_PURCHASED };
-
-const initialState: State = {
-  list: [
-    {
-      name: "",
-      id: 0,
-      purchased: false,
-    },
-  ],
+const initialState: ListState = {
+  list: [],
 };
 
-export const listReducer = (state = initialState, action: Actions) => {
+export const listReducer = (
+  state = initialState,
+  action: Actions
+): ListState => {
   switch (action.type) {
     case ADD_ITEM:
       return {

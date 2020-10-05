@@ -1,30 +1,19 @@
+import { UserState, Actions } from "../utils/types";
+
 export const LOADING = "LOADING";
 export const ERROR = "ERROR";
 export const SET_USER = "SET_USER";
 
-interface User {
-  username: string;
-  email: string;
-  id: number;
-}
-
-type Actions =
-  | { type: typeof LOADING }
-  | { type: typeof ERROR; payload: string }
-  | { type: typeof SET_USER; payload: User };
-
-interface State {
-  user: {};
-  error: string;
-  loading: boolean;
-}
-const initialState: State = {
+const initialState: UserState = {
   user: {},
   error: "",
   loading: false,
 };
 
-export const userReducer = (state = initialState, action: Actions): State => {
+export const userReducer = (
+  state = initialState,
+  action: Actions
+): UserState => {
   switch (action.type) {
     case LOADING:
       return {

@@ -1,10 +1,9 @@
 import { combineReducers } from "redux";
 import { listReducer } from "./listReducer";
 import { userReducer } from "./userReducer";
+import { AppState } from "../utils/types";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers<AppState>({
   user: userReducer,
   list: listReducer,
 });
-
-export type RootState = ReturnType<typeof rootReducer>;
