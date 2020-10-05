@@ -14,7 +14,7 @@ export interface ListItem {
 }
 
 export interface UserState {
-  user: {};
+  user: User;
   error: string;
   loading: boolean;
 }

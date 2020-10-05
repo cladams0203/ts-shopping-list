@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, Dispatch } from "react";
+import { useDispatch } from "react-redux";
 import { FormValues } from "../utils/types";
+import { User, Actions } from "../utils/types";
+import { SET_USER } from "../reducers/userReducer";
+import { useHistory } from "react-router-dom";
 
 const initialValues = {
   username: "",
@@ -11,14 +14,27 @@ const initialValues = {
 
 export const Register: React.FC = () => {
   const [form, setForm] = useState<FormValues>(initialValues);
-  const state = useSelector((state) => state);
+  const dispatch = useDispatch<Dispatch<Actions>>();
+  const history = useHistory();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  console.log(state);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newUser: User = {
+      username: form.username,
+      email: form.email,
+      id: Date.now(),
+    };
+    dispatch({ type: SET_USER, payload: newUser });
+    history.push("/list");
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Username:{" "}
           <input
@@ -47,6 +63,7 @@ export const Register: React.FC = () => {
           Email:{" "}
           <input name="email" value={form.email} onChange={handleChange} />
         </label>
+        <button type="submit">Submit</button>
       </form>
     </>
   );
