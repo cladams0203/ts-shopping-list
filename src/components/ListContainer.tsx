@@ -1,14 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../utils/types";
+import { AppState, ListItem } from "../utils/types";
+import { ShoppingListItem } from "./ShoppingListItem";
 
 export const ListContainer: React.FC = () => {
   const { user } = useSelector((state: AppState) => state.user);
-  console.log(user);
+  const { list } = useSelector((state: AppState) => state.list);
+  console.log(list);
+
   return (
     <>
       <div>
-        <h1>{user.username}</h1>
+        <h1>{user.username}'s Shopping List</h1>
+        {list.map((item: ListItem) => {
+          return <ShoppingListItem item={item} key={item.id} />;
+        })}
       </div>
     </>
   );

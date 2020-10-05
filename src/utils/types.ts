@@ -42,3 +42,7 @@ export interface FormValues {
   confirmPassword: string;
   email: string;
 }
+
+export interface ItemProps {
+  item: ListItem;
+}
