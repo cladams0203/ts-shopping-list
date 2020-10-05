@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FormValues } from "../utils/types";
+import { User, Actions } from "../utils/types";
+import { SET_USER } from "../reducers/userReducer";
 
 const initialValues = {
   username: "",
@@ -11,14 +13,25 @@ const initialValues = {
 
 export const Register: React.FC = () => {
   const [form, setForm] = useState<FormValues>(initialValues);
-  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  console.log(state);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newUser: User = {
+      username: form.username,
+      email: form.email,
+      id: Date.now(),
+    };
+    dispatch<Actions>({ type: SET_USER, payload: newUser });
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Username:{" "}
           <input
