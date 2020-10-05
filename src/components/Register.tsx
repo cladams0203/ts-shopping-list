@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch } from "react";
 import { useDispatch } from "react-redux";
 import { FormValues } from "../utils/types";
 import { User, Actions } from "../utils/types";
@@ -13,7 +13,7 @@ const initialValues = {
 
 export const Register: React.FC = () => {
   const [form, setForm] = useState<FormValues>(initialValues);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<Dispatch<Actions>>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -26,7 +26,7 @@ export const Register: React.FC = () => {
       email: form.email,
       id: Date.now(),
     };
-    dispatch<Actions>({ type: SET_USER, payload: newUser });
+    dispatch({ type: SET_USER, payload: newUser });
   };
 
   return (
