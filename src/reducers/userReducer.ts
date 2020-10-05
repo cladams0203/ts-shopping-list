@@ -1,11 +1,17 @@
-import { UserState, Actions } from "../utils/types";
+import { UserState, Actions, User } from "../utils/types";
 
 export const LOADING = "LOADING";
 export const ERROR = "ERROR";
 export const SET_USER = "SET_USER";
 
+const initialUser: User = {
+  username: "",
+  id: 0,
+  email: "",
+};
+
 const initialState: UserState = {
-  user: {},
+  user: initialUser,
   error: "",
   loading: false,
 };
