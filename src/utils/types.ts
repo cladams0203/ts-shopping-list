@@ -11,6 +11,7 @@ export interface ListItem {
   name: string;
   id: number;
   purchased: boolean;
+  price: number;
 }
 
 export interface UserState {
@@ -41,6 +42,10 @@ export interface FormValues {
   password: string;
   confirmPassword: string;
   email: string;
+}
+export interface ListFormValue {
+  name: string;
+  price: string;
 }
 
 export interface ItemProps {
