@@ -1,18 +1,19 @@
 import React, { useState, Dispatch } from "react";
 import { useDispatch } from "react-redux";
-import { Actions, ListFormValue, ListItem } from "../utils/types";
+import {
+  Actions,
+  ListFormValue,
+  ListItem,
+  ItemFormprops,
+} from "../utils/types";
 import { ADD_ITEM } from "../reducers/listReducer";
-
-interface Formprops {
-  handleTotal: (arg: number) => void;
-}
 
 const inititialForm = {
   name: "",
   price: "",
 };
 
-export const AddItemForm: React.FC<Formprops> = ({ handleTotal }) => {
+export const AddItemForm: React.FC<ItemFormprops> = ({ handleTotal }) => {
   const [form, setForm] = useState<ListFormValue>(inititialForm);
   const dispatch = useDispatch<Dispatch<Actions>>();
 

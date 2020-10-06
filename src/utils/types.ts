@@ -51,3 +51,6 @@ export interface ListFormValue {
 export interface ItemProps {
   item: ListItem;
 }
+export interface ItemFormprops {
+  handleTotal: (arg: number) => void;
+}
