@@ -4,6 +4,7 @@ import { FormValues } from "../utils/types";
 import { User, Actions } from "../utils/types";
 import { SET_USER } from "../reducers/userReducer";
 import { useHistory } from "react-router-dom";
+import "../styles/Register.scss";
 
 const initialValues = {
   username: "",
@@ -33,7 +34,8 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="register-container">
+      <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Username:{" "}
@@ -65,6 +67,6 @@ export const Register: React.FC = () => {
         </label>
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div>
   );
 };

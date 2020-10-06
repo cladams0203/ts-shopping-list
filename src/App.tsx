@@ -1,7 +1,7 @@
 import React from "react";
 import { Register } from "./components/Register";
 import { Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import { ListContainer } from "./components/ListContainer";
 
 function App() {
